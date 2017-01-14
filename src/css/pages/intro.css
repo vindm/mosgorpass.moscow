@@ -1,0 +1,124 @@
+.pager__page_type_intro .pager__page-content {
+    max-width: 940px;
+}
+
+.logo {
+    width: 358px;
+    padding: 70px 0;
+    margin: 0 auto;
+    line-height: 0;
+}
+.logo__img {
+    vertical-align: top;
+    width: 100%;
+}
+
+.intro {
+    display: flex;
+    align-items: center;
+}
+
+.intro__media {
+    position: relative;
+    white-space: nowrap;
+
+    width: 455px;
+    margin: 0 auto;
+}
+
+.intro__iphone-pic,
+.intro__nexus-pic {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+.intro__iphone-pic {
+    width: 60%;
+    z-index: 1;
+}
+.intro__nexus-pic {
+    width: 47%;
+    z-index: 0;
+    left: -50px;
+    top: 45px;
+}
+
+.intro__info h2 {
+    line-height: 0.89;
+    letter-spacing: -0.1px;
+    color: #ffffff;
+    font-size: 76px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.intro__info h2 + .app-links {
+    margin: 22px auto 44px;
+}
+
+.intro__info .app-links img
+{
+    width: 194px;
+}
+.intro__info .app-links img + img
+{
+    margin-left: 32px;
+}
+
+@media all and (max-width: 1239px) {
+    .logo {
+        padding: 30px 0;
+        width: 340px;
+    }
+    .intro {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .intro__info h2 {
+        font-size: 58px;
+        line-height: 1.17;
+    }
+    .intro__media {
+        margin-bottom: 30px;
+        width: 418px;
+    }
+    .intro__nexus-pic {
+        top: 30px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .logo {
+        padding: 30px 0;
+        width: 180px;
+        object-fit: contain;
+    }
+    .intro__info h2 {
+        width: 190px;
+        font-size: 34px;
+        line-height: 0.88;
+        letter-spacing: 0.3px;
+        margin: 0 auto;
+    }
+    .intro__info h2 + .app-links {
+        margin-top: 28px;
+    }
+    .intro__media {
+        margin-bottom: 18px;
+        width: 202px;
+    }
+    .intro__nexus-pic
+    {
+        top: 13px;
+        left: -25px;
+    }
+    .intro__info .app-links img
+    {
+        width: 136px;
+    }
+    .intro__info .app-links img + img
+    {
+        margin-left: 13px;
+    }
+}

@@ -1,0 +1,16 @@
+.pager {
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.pager__movable {
+    position: relative;
+    backface-visibility: hidden;
+}
+
+.pager,
+.pager__movable {
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1020 350" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-4">
+            <ellipse id="Oval-3-Copy" fill="#ECECEC" cx="153.451049" cy="230.458042" rx="5.5" ry="5.5"></ellipse>
+            <path d="M156.492942,230.076923 L250.464802,230.076923 C263.462933,230.076923 274,242.253334 274,257.281076 C274,272.305515 263.461383,284.48523 250.464802,284.48523 L1,284.48523" id="Rectangle-9" stroke="#ECECEC" stroke-width="3"></path>
+            <path d="M173.65035,87.5 L1,87.5" id="Rectangle-9" stroke="#ECECEC" stroke-width="3"></path>
+            <circle id="Oval-3-Copy-3" fill="#ECECEC" cx="176.5" cy="87.5" r="5.5"></circle>
+            <ellipse id="Oval-3-Copy" fill="#ECECEC" cx="967.5" cy="119.5" rx="5.5" ry="5.5"></ellipse>
+            <ellipse id="Oval-3-Copy" fill="#ECECEC" cx="820.5" cy="171.5" rx="5.5" ry="5.5"></ellipse>
+            <path d="M969,119.5 L1020.50447,119.5" id="Path" stroke="#ECECEC" stroke-width="3" fill="#D8D8D8"></path>
+            <path d="M1020.90291,171.5 L820,171.5" id="Path" stroke="#ECECEC" stroke-width="3" fill="#D8D8D8"></path>
+            <path d="M911.39476,201 L998.371951,201 C1010.40258,201 1020.15534,212.270076 1020.15534,226.179249 C1020.15534,240.085364 1010.40115,251.358498 998.371951,251.358498 L911,251.358498" id="Rectangle-9" stroke="#ECECEC" stroke-width="3" transform="translate(965.577670, 226.179249) rotate(180.000000) translate(-965.577670, -226.179249) "></path>
+        </g>
+    </g>
+</svg>
