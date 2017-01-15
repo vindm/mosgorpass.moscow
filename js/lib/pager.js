@@ -130,7 +130,7 @@
 
             this.moveTo({
                 to: this._currentPosition,
-                duration: 0
+                duration: opts.position ? 100 : 0
             });
         }
 
