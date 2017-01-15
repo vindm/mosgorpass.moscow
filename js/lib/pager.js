@@ -481,7 +481,7 @@
      * @private
      */
     pager._onResize = function() {
-        var winHeight = $win.outerHeight(),
+        var winHeight = $win.height(),
             lastEnd = 0;
 
         this._items.forEach(function(item) {
