@@ -341,7 +341,8 @@ var debounce = require('./debounce'),
      * @param {Boolean} isOn
      */
     pager._bindEvents = function(isOn) {
-        this._$elem[isOn ? 'on' : 'off'](true || ('ontouchstart' in doc.documentElement) ?
+        alert('ontouchstart' in doc.documentElement);
+        this._$elem[isOn ? 'on' : 'off']('ontouchstart' in doc.documentElement ?
             {
                 touchend: this._onTouchEnd,
                 touchstart: this._onTouchStart,
@@ -446,8 +447,6 @@ var debounce = require('./debounce'),
      * @private
      */
     pager._onScroll = function(event) {
-        console.error('scroll', event, this._$elem.scrollTop(), this._currentPosition);
-
         this.move(this._$elem.scrollTop() - this._currentPosition);
 
         event.preventDefault();
