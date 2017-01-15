@@ -167,8 +167,6 @@ var debounce = require('./debounce'),
             steps = currentItem.steps;
         }
 
-        steps && console.error(steps, currentItem);
-
         if (steps) {
             step = currentItem.step;
             nextStep = step + (delta > 0 ? 1 : -1);
@@ -335,6 +333,8 @@ var debounce = require('./debounce'),
         }
 
         if ( ! isCurrent) {
+            prevItem && prevItem.$elem.removeClass('current');
+
             _this._$elem.trigger('change_start', {
                 next: currentItem,
                 current: prevItem
@@ -345,11 +345,14 @@ var debounce = require('./debounce'),
             .moveTo({ to: currentItem.start })
             .then(function() {
                 if ( ! isCurrent) {
+                    currentItem.$elem.addClass('current');
+
                     _this._currentItem = currentItem;
-                    _this._$elem.trigger('change_done', {
-                        prev: prevItem,
-                        current: currentItem
-                    });
+                    _this._$elem
+                        .trigger('change_done', {
+                            prev: prevItem,
+                            current: currentItem
+                        });
                 }
             });
 
@@ -441,6 +444,9 @@ var debounce = require('./debounce'),
                 wheel: this._onWheelScroll,
                 scroll: this._onScroll
             });
+
+        $('.pager__nav_dir_next').click(this.next.bind(this));
+        $('.pager__nav_dir_prev').click(this.prev.bind(this));
     };
 
     /**
@@ -502,7 +508,7 @@ var debounce = require('./debounce'),
      * @private
      * @param {jQuery.Event} event
      */
-    pager._onTouchStart = function(event) {  console.error('touch start');
+    pager._onTouchStart = function(event) {
         this._touchStartY = event.originalEvent.touches[0].pageY;
     };
 
@@ -510,7 +516,7 @@ var debounce = require('./debounce'),
      * @private
      * @param {jQuery.Event} event
      */
-    pager._onTouchEnd = function(event) {   console.error('touch end');
+    pager._onTouchEnd = function(event) {
         this.move(this._touchStartY - event.originalEvent.changedTouches[0].pageY);
 
         event.preventDefault();
@@ -534,7 +540,7 @@ var debounce = require('./debounce'),
             lastEnd = 0;
 
         this._items.forEach(function(slide) {
-            slide.height = slide.$elem.height();
+            slide.height = slide.$elem.outerHeight();
             slide.start = lastEnd;
             slide.end = (lastEnd += slide.height);
         });
