@@ -11,6 +11,14 @@ $(function() {
     $pager.pager();
     pager = $pager.data('pager');
 
+    $('.screens__nav_dir_next').click(function() {
+        pager.step(1);
+    });
+
+    $('.screens__nav_dir_prev').click(function() {
+        pager.step(-1);
+    });
+
     $pager
         .on('change_start', function() {
             video.pause();

@@ -6,6 +6,7 @@
 .pager__page_type_intro .pager__page-content {
     max-width: 940px;
     padding-bottom: 48px;
+    padding-top: 0;
 }
 
 .logo {
@@ -61,6 +62,7 @@
 
 .intro__info h2 + .app-links {
     margin: 22px auto 44px;
+    white-space: nowrap;
 }
 
 .intro__info .app-links img
@@ -95,6 +97,10 @@
 }
 
 @media all and (max-width: 767px) {
+    .pager__page_type_intro .pager__page-content {
+        padding-bottom: 12px;
+        border-top-width: 16px;
+    }
     .logo {
         padding: 30px 0;
         width: 180px;
@@ -109,6 +115,7 @@
     }
     .intro__info h2 + .app-links {
         margin-top: 28px;
+        width: 288px;
     }
     .intro__media {
         margin-bottom: 18px;

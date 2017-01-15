@@ -59,5 +59,23 @@
 .pager__nav_dir_next .pager__nav-arrow img {
     opacity: .8;
     transition: opacity .25s;
-    transform: rotateX(180deg) translate(-50%, -21px)
+    transform: rotateX(180deg) translate(-50%, -21px);
+}
+
+@media all and (max-width: 767px) {
+    .pager__nav {
+        height: 18px;
+    }
+    .pager__nav-arrow {
+        border-width: 0 22px 18px 22px;
+    }
+
+    .pager__nav-arrow img {
+        width: 28px;
+        height: 12px;
+    }
+
+    .pager__nav_dir_next .pager__nav-arrow img {
+        transform: rotateX(180deg) translate(-50%, -7px);
+    }
 }

@@ -3,27 +3,19 @@
     display: flex;
     width: 100%;
     padding: 0;
+    background: #f7f7f7;
 }
 
 .outro {
+    backface-visibility: hidden;
     text-align: center;
     margin: auto;
     padding: 0 20px;
     width: 100%;
     position: relative;
     box-sizing: border-box;
-}
-
-.outro:before {
-    position: absolute;
-    content: '';
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: #f7f7f7 url(../../assets/images/bg/4-large.svg) center;
+    background: url(../../assets/images/bg/4-large.svg) center;
     background-size: 3000px 484px;
-    z-index: -1;
 }
 
 .outro h2 {
@@ -49,12 +41,13 @@
 }
 
 .footer {
+    box-sizing: border-box;
     background: url(../../assets/images/bus.jpg);
     background-position: center;
     background-size: cover;
     width: 100%;
     position: relative;
-    min-height: 530px;
+    height: 530px;
     flex-grow: 2;
     flex-basis: 50%;
     text-align: center;
@@ -63,13 +56,7 @@
 }
 
 .footer__inner {
-    position: absolute;
     width: 100%;
-    left: 50%;
-    top: 50px;
-    bottom: 0;
-    transform: translateX(-50%);
-    max-width: 780px;
     padding: 0 20px;
     box-sizing: border-box;
     margin: 0 auto;
@@ -111,9 +98,10 @@
 
 .copyright {
     position: absolute;
-    bottom: 12px;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 12px;
     left: 0;
-    right: 0;
     text-align: center;
     color: #fff;
     font-family: Roboto, "PT Sans", serif;
@@ -123,9 +111,70 @@
 }
 
 @media all and (max-width: 1019px) {
-    .outro:before {
-        width: 1020px;
-        height: 350px;
-        background: url(../../assets/images/bg/4.svg) no-repeat;
+    .outro {
+        background-image: url(../../assets/images/bg/4.svg);
+        background-size: 1020px 350px;
+    }
+}
+
+@media all and (min-width: 768px) {
+    .footer__inner {
+        position: absolute;
+        left: 50%;
+        top: 50px;
+        bottom: 0;
+        transform: translateX(-50%);
+        max-width: 728px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .outro {
+        background-image: url(../../assets/images/bg/4.svg);
+        background-size: 1020px 350px;
+        padding: 0 16px;
+    }
+    .outro h2 {
+        line-height: 1.21;
+        letter-spacing: 0.2px;
+        font-size: 28px;
+    }
+    .outro h2, .outro .app-links {
+        margin: 36px auto;
+    }
+    .outro .app-links img {
+        width: 136px;
+    }
+
+    .outro .app-links img + img {
+        margin-left: 12px;
+    }
+    .footer {
+        height: 379px;
+        border-bottom-width: 0;
+        border-top-width: 2px;
+        flex-grow: 0;
+    }
+    .footer__inner {
+        background-position: 70% bottom;
+        background-size: 180px 288.6px;
+        height: 100%;
+    }
+    .footer__contacts {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        padding: 30px 0 25px;
+    }
+    .footer__contacts li + li {
+        margin-left: 16px;
+    }
+    .footer__contacts svg {
+        width: 32px;
+    }
+    .copyright {
+        font-size: 8px;
+        padding-bottom: 8px;
+        border-bottom: #e42828 16px solid;
     }
 }

@@ -19,8 +19,8 @@ var debounce = require('./debounce'),
 
         this.addItems($movable.children('article'));
 
-        this._onResize = debounce(this._onResize, 100, this);
-        this._onScroll = debounce(this._onScroll, 500, this);
+        this._onResize = debounce(this._onResize, 100, true, this);
+        this._onScroll = debounce(this._onScroll, 500, true, this);
         this._onTouchEnd = this._onTouchEnd.bind(this);
         this._onTouchStart = this._onTouchStart.bind(this);
         this._onWheelScroll = this._onWheelScroll.bind(this);
@@ -35,36 +35,28 @@ var debounce = require('./debounce'),
 
     var pager = Pager.prototype;
 
-    pager.stepMove = function(delta, options) {
-        var opts = options || {},
-            currentItem,
-            step,
-            steps,
-            nextStep;
-
-        currentItem = this._currentItem;
-
-        if (this._currentPosition === currentItem.start) {
-            steps = currentItem.steps;
-        }
+    pager.step = function(delta) {
+        var currentItem = this._currentItem,
+            steps = currentItem.steps,
+            isDown = delta > 0,
+            nextStep,
+            step;
 
         if (steps) {
             step = currentItem.step;
-            nextStep = step + (delta > 0 ? 1 : -1);
+            nextStep = step + (isDown ? 1 : -1);
         }
 
-        if (nextStep >= 0 && nextStep < steps) {
-            if ( ! opts.checkScroll || this._isRealScroll(delta)) {
-                currentItem.step = nextStep;
+        if (nextStep >= 0 && nextStep <= steps) {
+            currentItem.step = nextStep;
 
-                this._$elem.trigger('change_step', {
-                    item: currentItem,
-                    prev: step,
-                    current: nextStep,
-                    isLast: nextStep === steps - 1,
-                    isFirst: nextStep === 0
-                });
-            }
+            this._$elem.trigger('change_step', {
+                item: currentItem,
+                prev: step,
+                current: nextStep,
+                isLast: nextStep === steps,
+                isFirst: nextStep === 0
+            });
 
             return this;
         }
@@ -78,11 +70,10 @@ var debounce = require('./debounce'),
     pager.move = function(delta, options) {
         var opts = options || {},
             item,
-            step,
-            steps,
+            isDown,
             position,
-            nextStep,
-            currentItem;
+            currentItem,
+            currentPosition;
 
         if (this.isDisabled || this.scrolling) {
             this._lastScrollDelta = delta;
@@ -94,43 +85,29 @@ var debounce = require('./debounce'),
             return this;
         }
 
+        isDown = delta > 0;
         currentItem = this._currentItem;
+        currentPosition = this._currentPosition;
 
-        if (opts.checkSteps && this._currentPosition === currentItem.start) {
-            steps = currentItem.steps;
-        }
-
-        if (steps) {
-            step = currentItem.step;
-            nextStep = step + (delta > 0 ? 1 : -1);
-        }
-
-        if (nextStep >= 0 && nextStep <= steps - 1) {
-            if ( ! opts.checkScroll || this._isRealScroll(delta)) {
-                currentItem.step = nextStep;
-
-                this._$elem.trigger('change_step', {
-                    item: currentItem,
-                    prev: step,
-                    current: nextStep,
-                    isLast: nextStep === steps - 1,
-                    isFirst: nextStep === 0
-                });
+        if (
+            opts.checkSteps && currentPosition === currentItem.start &&
+            ( ! opts.checkScroll || this._isRealScroll(delta))
+        ) {
+            if (this.step(delta)) {
+                return this;
             }
-
-            return this;
         }
 
-        position = this._currentPosition + delta;
+        position = currentPosition + delta;
 
-        if (delta > 0 && this._currentPosition < (currentItem.end - this.winSize.height)) {
-            position = Math.min(position, currentItem.end - this.winSize.height);
+        if (delta > 0 && currentPosition < currentItem.winHeightDiff) {
+            position = Math.min(position, currentItem.winHeightDiff);
         }
-        if (delta < 0 && this._currentPosition > currentItem.start) {
+        if (delta < 0 && currentPosition > currentItem.start) {
             position = Math.max(position, currentItem.start);
         }
 
-        item = this._getItemByPosition(position, delta > 0 ? 'down' : 'up');
+        item = this._getItemByPosition(position, isDown ? 'down' : 'up');
 
         if (item !== currentItem) {
             if ( ! opts.checkScroll || this._isRealScroll(delta)) {
@@ -140,8 +117,9 @@ var debounce = require('./debounce'),
             }
         } else {
             this._lastScrollDelta = delta;
-            this._currentPosition = Math.max(item.start, Math.min(position, item.end - this.winSize.height));
+            this._currentPosition = Math.max(item.start, Math.min(position, item.winHeightDiff));
             this._currentItem = item;
+
             this.moveTo({
                 to: this._currentPosition,
                 duration: 0
@@ -188,17 +166,12 @@ var debounce = require('./debounce'),
      */
     pager.addItems = function($items) {
         var _this = this,
-            id = _this.id,
-            $slide,
-            slideId;
+            $slide;
 
         $.each($items, function(ind, slide) {
             $slide = $(slide);
-            slideId = $slide.attr('id') || ('slide' + ind + 1);
-            $slide.attr('id', id + '_' + slideId);
 
             _this._itemsCount = _this._items.push({
-                id: slideId,
                 index: ind,
                 step: parseInt($slide.data('step'), 10) || 0,
                 steps: parseInt($slide.data('steps'), 10) || 0,
@@ -266,7 +239,7 @@ var debounce = require('./debounce'),
         }
 
         if ( ! isCurrent) {
-            prevItem && prevItem.$elem.removeClass('current');
+            // prevItem && prevItem.$elem.removeClass('current');
 
             _this._$elem.trigger('change_start', {
                 next: currentItem,
@@ -278,7 +251,7 @@ var debounce = require('./debounce'),
             .moveTo({ to: currentItem.start })
             .then(function() {
                 if ( ! isCurrent) {
-                    currentItem.$elem.addClass('current');
+                    // currentItem.$elem.addClass('current');
 
                     _this._currentItem = currentItem;
                     _this._$elem
@@ -368,10 +341,11 @@ var debounce = require('./debounce'),
      * @param {Boolean} isOn
      */
     pager._bindEvents = function(isOn) {
-        this._$elem[isOn ? 'on' : 'off']('ontouchstart' in doc.documentElement ?
+        this._$elem[isOn ? 'on' : 'off'](true || ('ontouchstart' in doc.documentElement) ?
             {
                 touchend: this._onTouchEnd,
-                touchstart: this._onTouchStart
+                touchstart: this._onTouchStart,
+                scroll: function(e) { e.preventDefault(); e.stopPropagation(); return false; }
             } :
             {
                 wheel: this._onWheelScroll,
@@ -442,7 +416,14 @@ var debounce = require('./debounce'),
      * @param {jQuery.Event} event
      */
     pager._onTouchStart = function(event) {
-        this._touchStartY = event.originalEvent.touches[0].pageY;
+        var touches = event.originalEvent.targetTouches;
+
+        // игнорим если на экране слишком много пальцев
+        if (touches && touches.length > 1) {
+            return;
+        }
+
+        this._touchStart = touches ? touches[0] : event.originalEvent;
     };
 
     /**
@@ -450,10 +431,13 @@ var debounce = require('./debounce'),
      * @param {jQuery.Event} event
      */
     pager._onTouchEnd = function(event) {
-        this.move(this._touchStartY - event.originalEvent.changedTouches[0].pageY);
+        var touches = event.originalEvent.changedTouches,
+            currentTouch = touches ? touches[0] : event.originalEvent;
+
+        this.move(this._touchStart.pageY - currentTouch.pageY);
 
         event.preventDefault();
-        event.stopPropafation();
+        event.stopPropagation();
 
         return false;
     };
@@ -461,8 +445,15 @@ var debounce = require('./debounce'),
     /**
      * @private
      */
-    pager._onScroll = function() {
+    pager._onScroll = function(event) {
+        console.error('scroll', event, this._$elem.scrollTop(), this._currentPosition);
+
         this.move(this._$elem.scrollTop() - this._currentPosition);
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        return false;
     };
 
     /**
@@ -476,6 +467,7 @@ var debounce = require('./debounce'),
             slide.height = slide.$elem.outerHeight();
             slide.start = lastEnd;
             slide.end = (lastEnd += slide.height);
+            slide.winHeightDiff = slide.end - winHeight;
         });
 
         this.winSize || (this.winSize = {});
