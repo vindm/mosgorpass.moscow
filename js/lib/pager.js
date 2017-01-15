@@ -375,6 +375,10 @@
         var oldDelta = this._lastScrollDelta,
             isRealScroll = false;
 
+        if (navigator.userAgent.indexOf('Mac') === -1) {
+            return true;
+        }
+
         if (oldDelta !== null) {
             // different direction
             if (oldDelta < 0 && newDelta > 0) {
