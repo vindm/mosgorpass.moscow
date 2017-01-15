@@ -335,7 +335,7 @@
                     break;
                 }
 
-                if (direction === 'up' && item[withBounce ? 'qStart' : 'end'] > start) {
+                if (direction === 'up' && item[withBounce ? 'qsEnd' : 'end'] > start) {
                     break;
                 }
             }
@@ -491,6 +491,7 @@
             item.end = (lastEnd += item.height);
             item.qStart = item.start + item.height / 10;
             item.qEnd = item.end + item.height / 10;
+            item.qsEnd = item.end - item.height / 10;
             item.winHeightDiff = item.end - winHeight;
         });
 
