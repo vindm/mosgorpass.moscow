@@ -165,6 +165,7 @@
         background-position: 70% bottom;
         background-size: 180px 288.6px;
         height: 100%;
+        max-width: 320px;
     }
     .footer__contacts {
         display: block;
