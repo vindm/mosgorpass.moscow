@@ -95,7 +95,7 @@ module.exports = function(fn, timeout, invokeAsap, ctx) {
 
         this.addItems($movable.children('article'));
 
-        this._onResize = debounce(this._onResize, 100, this);
+        this._onResize = debounce(this._onResize, true, 100, this);
         this._onScroll = debounce(this._onScroll, true, 500, this);
         this._onTouchEnd = this._onTouchEnd.bind(this);
         this._onTouchStart = this._onTouchStart.bind(this);
