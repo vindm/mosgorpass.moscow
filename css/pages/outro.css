@@ -1,5 +1,6 @@
 .pager__page_type_outro .pager__page-content {
     flex-grow: 1;
+    flex-shrink: 0;
     display: flex;
     width: 100%;
     padding: 0;
@@ -11,6 +12,7 @@
     text-align: center;
     margin: auto;
     padding: 0 20px;
+    flex-basis: 50%;
     width: 100%;
     position: relative;
     box-sizing: border-box;
@@ -30,6 +32,11 @@
 .outro h2,
 .outro .app-links {
     margin: 100px auto;
+}
+
+.outro .app-links {
+    margin: 100px auto;
+    white-space: nowrap;
 }
 
 .outro .app-links img {

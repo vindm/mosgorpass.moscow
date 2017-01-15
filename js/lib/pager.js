@@ -20,7 +20,7 @@ var debounce = require('./debounce'),
         this.addItems($movable.children('article'));
 
         this._onResize = debounce(this._onResize, 100, true, this);
-        this._onScroll = debounce(this._onScroll, 500, true, this);
+        this._onScroll = debounce(this._onScroll, 500, this);
         this._onTouchEnd = this._onTouchEnd.bind(this);
         this._onTouchStart = this._onTouchStart.bind(this);
         this._onWheelScroll = this._onWheelScroll.bind(this);
@@ -35,7 +35,7 @@ var debounce = require('./debounce'),
 
     var pager = Pager.prototype;
 
-    pager.step = function(delta) {
+    pager.step = function(diff) {
         var currentItem = this._currentItem,
             steps = currentItem.steps,
             isDown = delta > 0,
@@ -44,21 +44,21 @@ var debounce = require('./debounce'),
 
         if (steps) {
             step = currentItem.step;
-            nextStep = step + (isDown ? 1 : -1);
-        }
+            nextStep = step + diff;
 
-        if (nextStep >= 0 && nextStep <= steps) {
-            currentItem.step = nextStep;
+            if (nextStep >= 0 && nextStep <= steps) {
+                currentItem.step = nextStep;
 
-            this._$elem.trigger('change_step', {
-                item: currentItem,
-                prev: step,
-                current: nextStep,
-                isLast: nextStep === steps,
-                isFirst: nextStep === 0
-            });
+                this._$elem.trigger('change_step', {
+                    item: currentItem,
+                    prev: step,
+                    current: nextStep,
+                    isLast: nextStep === steps,
+                    isFirst: nextStep === 0
+                });
 
-            return this;
+                return nextStep;
+            }
         }
     };
 
@@ -72,6 +72,7 @@ var debounce = require('./debounce'),
             item,
             isDown,
             position,
+            isRealScroll,
             currentItem,
             currentPosition;
 
@@ -86,31 +87,37 @@ var debounce = require('./debounce'),
         }
 
         isDown = delta > 0;
+        isRealScroll = ! opts.checkScroll || this._isRealScroll(delta);
         currentItem = this._currentItem;
         currentPosition = this._currentPosition;
 
         if (
-            opts.checkSteps && currentPosition === currentItem.start &&
-            ( ! opts.checkScroll || this._isRealScroll(delta))
+            isRealScroll &&
+            opts.checkSteps &&
+            currentPosition === currentItem.start
         ) {
-            if (this.step(delta)) {
+            if (this.step(isDown ? 1 : -1)) {
                 return this;
             }
         }
 
-        position = currentPosition + delta;
+        position = opts.position;
 
-        if (delta > 0 && currentPosition < currentItem.winHeightDiff) {
-            position = Math.min(position, currentItem.winHeightDiff);
-        }
-        if (delta < 0 && currentPosition > currentItem.start) {
-            position = Math.max(position, currentItem.start);
+        if (typeof position !== 'number') {
+            position = currentPosition + delta;
+
+            if (delta > 0 && currentPosition < currentItem.winHeightDiff) {
+                position = Math.min(position, currentItem.winHeightDiff);
+            }
+            if (delta < 0 && currentPosition > currentItem.start) {
+                position = Math.max(position, currentItem.start);
+            }
         }
 
         item = this._getItemByPosition(position, isDown ? 'down' : 'up');
 
         if (item !== currentItem) {
-            if ( ! opts.checkScroll || this._isRealScroll(delta)) {
+            if (isRealScroll) {
                 this._currentPosition = item.start;
 
                 this.goTo(item.index, true);
@@ -302,7 +309,7 @@ var debounce = require('./debounce'),
      * @param {String} [direction] Направление
      * @returns {?Object} Айтем, соответствующий позиции
      */
-    pager._getItemByPosition = function(position, direction) {
+    pager._getItemByPosition = function(position, direction, withBounce) {
         var start = position || this._currentPosition,
             end = start + this.winSize.height,
             items = this._items,
@@ -315,15 +322,22 @@ var debounce = require('./debounce'),
             offset = start - item.start;
 
             if ( ! direction) {
-                if (item.height / 2 >= offset) {
+                if (item.halfHeight >= offset) {
+                    break;
+                }
+                if (item.halfHeight >= offset) {
                     break;
                 }
             } else {
-                if (direction === 'down' && item.start <= end && item.end >= end) {
+                if (
+                    direction === 'down' &&
+                    item[withBounce ? 'qStart' : 'start'] <= end &&
+                    item[withBounce ? 'qEnd' : 'end'] >= end
+                ) {
                     break;
                 }
 
-                if (direction === 'up' && item.end > start) {
+                if (direction === 'up' && item[withBounce ? 'qStart' : 'end'] > start) {
                     break;
                 }
             }
@@ -341,20 +355,21 @@ var debounce = require('./debounce'),
      * @param {Boolean} isOn
      */
     pager._bindEvents = function(isOn) {
-        alert('ontouchstart' in doc.documentElement);
+        $('.pager__nav_dir_next').on('click touchend touchstart tap', function(e) {
+            console.error(e);
+
+            e.preventDefault();
+        });
+
         this._$elem[isOn ? 'on' : 'off']('ontouchstart' in doc.documentElement ?
             {
                 touchend: this._onTouchEnd,
-                touchstart: this._onTouchStart,
-                scroll: function(e) { e.preventDefault(); e.stopPropagation(); return false; }
+                touchstart: this._onTouchStart
             } :
             {
                 wheel: this._onWheelScroll,
                 scroll: this._onScroll
             });
-
-        $('.pager__nav_dir_next').click(this.next.bind(this));
-        $('.pager__nav_dir_prev').click(this.prev.bind(this));
     };
 
     /**
@@ -417,14 +432,21 @@ var debounce = require('./debounce'),
      * @param {jQuery.Event} event
      */
     pager._onTouchStart = function(event) {
-        var touches = event.originalEvent.targetTouches;
+        var touches,
+            touch = true;
+
+        if (event.isDefaultPrevented()) {
+            touch = null;
+        }
+
+        touches = touch && event.originalEvent.targetTouches;
 
         // игнорим если на экране слишком много пальцев
         if (touches && touches.length > 1) {
-            return;
+            touch = null;
         }
 
-        this._touchStart = touches ? touches[0] : event.originalEvent;
+        this._touchStart = touch && (touches ? touches[0] : event.originalEvent);
     };
 
     /**
@@ -432,10 +454,16 @@ var debounce = require('./debounce'),
      * @param {jQuery.Event} event
      */
     pager._onTouchEnd = function(event) {
+        if (this._touchStart === null) {
+            return;
+        }
+
         var touches = event.originalEvent.changedTouches,
             currentTouch = touches ? touches[0] : event.originalEvent;
 
-        this.move(this._touchStart.pageY - currentTouch.pageY);
+        this.move(this._touchStart.pageY - currentTouch.pageY, {
+            position: this._$elem.scrollTop()
+        });
 
         event.preventDefault();
         event.stopPropagation();
@@ -462,11 +490,15 @@ var debounce = require('./debounce'),
         var winHeight = $win.height(),
             lastEnd = 0;
 
-        this._items.forEach(function(slide) {
-            slide.height = slide.$elem.outerHeight();
-            slide.start = lastEnd;
-            slide.end = (lastEnd += slide.height);
-            slide.winHeightDiff = slide.end - winHeight;
+        this._items.forEach(function(item) {
+            item.height = item.$elem.outerHeight();
+            item.halfHeight = item.height / 2;
+            item.quarterHeight = item.height / 4;
+            item.start = lastEnd;
+            item.end = (lastEnd += item.height);
+            item.qStart = item.start + item.quarterHeight;
+            item.qEnd = item.end + item.quarterHeight;
+            item.winHeightDiff = item.end - winHeight;
         });
 
         this.winSize || (this.winSize = {});

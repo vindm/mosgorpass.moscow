@@ -342,7 +342,7 @@
     }
     .pager__page_type_screens .pager__page-content {
         margin: 0 auto;
-        padding: 56px 16px;
+        padding: 56px 16px 96px;
     }
     .screens__lines {
         display: none;

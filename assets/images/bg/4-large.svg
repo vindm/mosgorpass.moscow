@@ -1,17 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 3000 484" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
-    <title>Artboard 3</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard-3">
-            <g id="line_background" transform="translate(0.000000, 67.000000)">
-                <g id="Group-7" transform="translate(0.000000, 95.000000)">
-                    <circle id="Oval-3-Copy" fill="#ECECEC" cx="1882" cy="101" r="9"></circle>
-                    <circle id="Oval-3-Copy" fill="#ECECEC" cx="2339" cy="101" r="9"></circle>
-                    <path d="M3000,101.00428 L1882,101" id="Rectangle-9" stroke="#ECECEC" stroke-width="4"></path>
-                    <circle id="Oval-3-Copy" fill="#ECECEC" cx="940" cy="146" r="9"></circle>
+<svg viewBox="0 0 3000 484" xmlns="http://www.w3.org/2000/svg"><title>Artboard 3</title><g transform="translate(0 67)" fill="none" fill-rule="evenodd"><g transform="translate(0 95)"><circle fill="#ECECEC" cx="1882" cy="101" r="9"/><circle fill="#ECECEC" cx="2339" cy="101" r="9"/><path d="M3000 101.004L1882 101" stroke="#ECECEC" stroke-width="4"/><circle fill="#ECECEC" cx="940" cy="146" r="9"/><path d="M2146 9h854" stroke="#ECECEC" stroke-width="4"/><circle fill="#ECECEC" cx="2141" cy="9" r="9"/><circle fill="#ECECEC" cx="2689" cy="9" r="9"/><path d="M3000 243.919h-917.537c-21.242 0-38.463-19.9-38.463-44.46 0-24.554 17.223-44.459 38.463-44.459H3000m-2055.04-8h153.577c21.242 0 38.463 19.9 38.463 44.46 0 24.554-17.223 44.459-38.463 44.459H0" stroke="#ECECEC" stroke-width="4"/></g><path d="M973 9H0" stroke="#ECECEC" stroke-width="4"/><circle fill="#ECECEC" cx="978" cy="9" r="9"/><circle fill="#ECECEC" cx="335" cy="9" r="9"/></g></svg>" fill="#ECECEC" cx="940" cy="146" r="9"></circle>
                     <path d="M2146,9 L3000,9.00000006" id="Path" stroke="#ECECEC" stroke-width="4"></path>
                     <circle id="Oval-3-Copy" fill="#ECECEC" cx="2141" cy="9" r="9"></circle>
                     <circle id="Oval-3-Copy" fill="#ECECEC" cx="2689" cy="9" r="9"></circle>
