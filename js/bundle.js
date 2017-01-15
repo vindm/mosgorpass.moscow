@@ -104,7 +104,7 @@ module.exports = function(fn, timeout, invokeAsap, ctx) {
         this._bindEvents(true);
         this._onResize();
 
-        $win.on('resize orientationchange', this._onResize);
+        $win.on('resize orientationchange load', this._onResize);
 
         $elem.data('pager', this);
     };
