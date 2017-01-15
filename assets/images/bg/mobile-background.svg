@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000px" height="784px" viewBox="0 0 1000 784" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-6">
+            <g id="фон-под-айфон" transform="translate(0.000000, 29.000000)">
+                <path d="M230,119 L623.719031,119 C632.710762,119 640,126.609095 640,136 C640,145.388841 632.709689,153 623.719031,153 L0,153" id="Rectangle-9" stroke="#ECECEC" stroke-width="2"></path>
+                <path d="M399.575621,627 L0,627" id="Rectangle-9" stroke="#ECECEC" stroke-width="2"></path>
+                <path d="M0,26 L364.882161,26 C375.992936,26 385,36.0708609 385,48.5 C385,60.9264069 375.991611,71 364.882161,71 L0,71" id="Rectangle-9" stroke="#ECECEC" stroke-width="2"></path>
+                <path d="M587,262 L1000,262" id="Rectangle-9" stroke="#ECECEC" stroke-width="2"></path>
+                <path d="M530,4 L1000,4" id="Rectangle-9-Copy" stroke="#ECECEC" stroke-width="2"></path>
+                <path d="M523.629627,234 L374.877462,234.076512 C364.451728,234.076512 356,224.212325 356,212.038256 C356,199.866863 364.452971,190 374.877462,190 L527,190" id="Rectangle-9" stroke="#EDEDED" stroke-width="2"></path>
+                <path d="M617.629627,517.923621 L581.877462,518 C571.451728,518 563,508.152936 563,496 C563,483.849736 571.452971,474 581.877462,474 L1000,474" id="Rectangle-9" stroke="#EDEDED" stroke-width="2"></path>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="616" cy="119" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="231" cy="119" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="588" cy="262" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="531" cy="4" rx="4" ry="4"></ellipse>
+                <path d="M0,505 L460,505" id="Rectangle-9-Copy" stroke="#ECECEC" stroke-width="2"></path>
+                <path d="M546,721 L1000,721.082031" id="Rectangle-9-Copy" stroke="#ECECEC" stroke-width="2"></path>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="393" cy="505" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="399" cy="627" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="460" cy="505" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="545" cy="721" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="616" cy="518" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3" fill="#EDEDED" cx="665" cy="474" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3-Copy" fill="#EDEDED" cx="394" cy="234" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3-Copy" fill="#EDEDED" cx="524" cy="234" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3-Copy" fill="#EDEDED" cx="517" cy="315" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-3-Copy" fill="#EDEDED" cx="524" cy="190" rx="4" ry="4"></ellipse>
+                <path d="M444.902538,366 L367.383307,366 C353.916778,366 343,354.586358 343,340.5 C343,326.416739 353.918384,315 367.383307,315 L516,315.402295" id="Rectangle-9" stroke="#EDEDED" stroke-width="2"></path>
+                <path d="M442.768115,366 L593.578898,366 C614.798287,366 632,386.10288 632,410.913221 C632,435.718108 614.795756,455.826442 593.578898,455.826442 L0,455.826442" id="Rectangle-9" stroke="#EDEDED" stroke-width="2"></path>
+            </g>
+        </g>
+    </g>
+</svg>
