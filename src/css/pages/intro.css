@@ -1,98 +1,151 @@
+.pager__page_type_intro {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.08));
+    border-top: 20px solid #e42828;
+
+    height: 100%;
+}
 .pager__page_type_intro .pager__page-content {
-    max-width: 940px;
+    padding-bottom: 48px;
+    height: 100%;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .logo {
-    width: 358px;
-    padding: 70px 0;
     margin: 0 auto;
-    line-height: 0;
+    padding: 20px 20px 0;
 }
 .logo__img {
     vertical-align: top;
     width: 100%;
+    transform: translateY(-60%);
+    top: 50%;
+    position: relative;
 }
 
 .intro {
     display: flex;
     align-items: center;
+    height: 100%;
+    flex-grow: 1;
 }
-
 .intro__media {
+    height: 100%;
     position: relative;
     white-space: nowrap;
-
-    width: 455px;
-    margin: 0 auto;
-}
-
-.intro__iphone-pic,
-.intro__nexus-pic {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
 }
 .intro__iphone-pic {
-    width: 60%;
+    margin-left: 5.5%;
+    position: relative;
+    width: auto;
+    height: 100%;
     z-index: 1;
 }
 .intro__nexus-pic {
-    width: 47%;
-    z-index: 0;
-    left: -50px;
-    top: 45px;
+    transform: translateX(-25%);
+    top: 7.5%;
+    width: auto;
+    height: 85%;
+    position: relative;
+    vertical-align: top;
 }
-
 .intro__info h2 {
     line-height: 0.89;
     letter-spacing: -0.1px;
     color: #ffffff;
-    font-size: 76px;
     font-weight: normal;
     margin: 0;
     padding: 0;
 }
-
 .intro__info h2 + .app-links {
     margin: 22px auto 44px;
+    white-space: nowrap;
 }
 
-.intro__info .app-links img
-{
-    width: 194px;
-}
-.intro__info .app-links img + img
-{
-    margin-left: 32px;
+@media all and (min-width: 1240px) {
+    .pager__page_type_intro {
+        min-height: 650px;
+    }
+    .pager__page_type_intro .pager__page-content {
+        max-width: 940px;
+    }
+    .logo {
+        height: 33%;
+        width: 358px;
+        min-height: 160px;
+    }
+    .intro__info h2  {
+        font-size: 76px;
+    }
+    .intro__info h2 + .app-links {
+        margin: 44px auto;
+    }
+    .intro__media {
+        max-height: 520px;
+        width: 50%;
+        text-align: right;
+    }
 }
 
 @media all and (max-width: 1239px) {
+    .pager__page_type_intro {
+        min-height: 690px;
+    }
     .logo {
-        padding: 30px 0;
         width: 340px;
+        min-height: 144px;
+        height: 20%;
     }
     .intro {
         flex-direction: column-reverse;
         text-align: center;
+        max-height: 690px;
+        min-height: 470px;
+        margin: auto;
+    }
+    .intro__info {
+        height: 30%;
+        min-height: 190px;
     }
     .intro__info h2 {
         font-size: 58px;
         line-height: 1.17;
     }
     .intro__media {
-        margin-bottom: 30px;
-        width: 418px;
+        max-height: calc(100% - 190px);
+        height: 70%;
+        width: 100%;
+        text-align: center;
     }
-    .intro__nexus-pic {
-        top: 30px;
+    .intro__iphone-pic {
+        margin-left: 5.5%;
     }
 }
 
 @media all and (max-width: 767px) {
+    .pager__page_type_intro {
+        border-top-width: 16px;
+        min-height: 500px;
+        max-height: 735px;
+    }
+    .pager__page_type_intro .pager__page-content {
+        padding-bottom: 18px;
+    }
     .logo {
-        padding: 30px 0;
+        padding-top: 10px;
         width: 180px;
+        min-height: 114px;
         object-fit: contain;
+    }
+    .intro {
+        max-height: 70%;
+        min-height: 300px;
+        margin: auto;
+    }
+    .intro__info {
+        padding-top: 14px;
+        height: 30%;
     }
     .intro__info h2 {
         width: 190px;
@@ -103,22 +156,5 @@
     }
     .intro__info h2 + .app-links {
         margin-top: 28px;
-    }
-    .intro__media {
-        margin-bottom: 18px;
-        width: 202px;
-    }
-    .intro__nexus-pic
-    {
-        top: 13px;
-        left: -25px;
-    }
-    .intro__info .app-links img
-    {
-        width: 136px;
-    }
-    .intro__info .app-links img + img
-    {
-        margin-left: 13px;
     }
 }

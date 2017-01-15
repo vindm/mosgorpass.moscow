@@ -1,7 +1,9 @@
-var debounce = require('./debounce'),
-    scroll = require('./scroll');
-
 (function(doc, win, $, undefined) {
+    var debounce = require('./debounce'),
+        scroll = require('./scroll');
+
+    var isTouch = 'ontouchstart' in doc.documentElement;
+
     var $win = $(win);
 
     var Pager = function(elem) {
@@ -19,8 +21,8 @@ var debounce = require('./debounce'),
 
         this.addItems($movable.children('article'));
 
-        this._onResize = debounce(this._onResize, 100, this);
-        this._onScroll = debounce(this._onScroll, 500, this);
+        this._onResize = debounce(this._onResize, true, 100, this);
+        this._onScroll = debounce(this._onScroll, true, 500, this);
         this._onTouchEnd = this._onTouchEnd.bind(this);
         this._onTouchStart = this._onTouchStart.bind(this);
         this._onWheelScroll = this._onWheelScroll.bind(this);
@@ -28,45 +30,36 @@ var debounce = require('./debounce'),
         this._bindEvents(true);
         this._onResize();
 
-        $win.on('resize', this._onResize);
+        $win.on('resize orientationchange load', this._onResize);
 
         $elem.data('pager', this);
     };
 
     var pager = Pager.prototype;
 
-    pager.stepMove = function(delta, options) {
-        var opts = options || {},
-            currentItem,
-            step,
-            steps,
-            nextStep;
-
-        currentItem = this._currentItem;
-
-        if (this._currentPosition === currentItem.start) {
-            steps = currentItem.steps;
-        }
+    pager.step = function(diff) {
+        var currentItem = this._currentItem,
+            steps = currentItem.steps,
+            nextStep,
+            step;
 
         if (steps) {
             step = currentItem.step;
-            nextStep = step + (delta > 0 ? 1 : -1);
-        }
+            nextStep = step + diff;
 
-        if (nextStep >= 0 && nextStep < steps) {
-            if ( ! opts.checkScroll || this._isRealScroll(delta)) {
+            if (nextStep >= 0 && nextStep <= (steps + (isTouch ? -1 : 0))) {
                 currentItem.step = nextStep;
 
                 this._$elem.trigger('change_step', {
                     item: currentItem,
                     prev: step,
                     current: nextStep,
-                    isLast: nextStep === steps - 1,
+                    isLast: nextStep === steps,
                     isFirst: nextStep === 0
                 });
-            }
 
-            return this;
+                return true;
+            }
         }
     };
 
@@ -78,11 +71,11 @@ var debounce = require('./debounce'),
     pager.move = function(delta, options) {
         var opts = options || {},
             item,
-            step,
-            steps,
+            isDown,
             position,
-            nextStep,
-            currentItem;
+            isRealScroll,
+            currentItem,
+            currentPosition;
 
         if (this.isDisabled || this.scrolling) {
             this._lastScrollDelta = delta;
@@ -94,59 +87,50 @@ var debounce = require('./debounce'),
             return this;
         }
 
+        isDown = delta > 0;
+        isRealScroll = ! opts.checkScroll || this._isRealScroll(delta);
         currentItem = this._currentItem;
+        currentPosition = this._currentPosition;
 
-        if (opts.checkSteps && this._currentPosition === currentItem.start) {
-            steps = currentItem.steps;
-        }
-
-        steps && console.error(steps, currentItem);
-
-        if (steps) {
-            step = currentItem.step;
-            nextStep = step + (delta > 0 ? 1 : -1);
-        }
-
-        if (nextStep >= 0 && nextStep <= steps - 1) {
-            if ( ! opts.checkScroll || this._isRealScroll(delta)) {
-                currentItem.step = nextStep;
-
-                this._$elem.trigger('change_step', {
-                    item: currentItem,
-                    prev: step,
-                    current: nextStep,
-                    isLast: nextStep === steps - 1,
-                    isFirst: nextStep === 0
-                });
+        if (
+            isRealScroll &&
+            opts.checkSteps &&
+            Math.abs(currentPosition - currentItem.start) < 50
+        ) {
+            if (this.step(isDown ? 1 : -1)) {
+                return this;
             }
-
-            return this;
         }
 
-        position = this._currentPosition + delta;
+        position = opts.position;
 
-        if (delta > 0 && this._currentPosition < (currentItem.end - this.winSize.height)) {
-            position = Math.min(position, currentItem.end - this.winSize.height);
-        }
-        if (delta < 0 && this._currentPosition > currentItem.start) {
-            position = Math.max(position, currentItem.start);
+        if (typeof position !== 'number') {
+            position = currentPosition + delta;
+
+            if (delta > 0 && currentPosition < currentItem.winHeightDiff) {
+                position = Math.min(position, currentItem.winHeightDiff);
+            }
+            if (delta < 0 && currentPosition > currentItem.start) {
+                position = Math.max(position, currentItem.start);
+            }
         }
 
-        item = this._getItemByPosition(position, delta > 0 ? 'down' : 'up');
+        item = this._getItemByPosition(position, isDown ? 'down' : 'up', Boolean(opts.position));
 
         if (item !== currentItem) {
-            if ( ! opts.checkScroll || this._isRealScroll(delta)) {
+            if (isRealScroll) {
                 this._currentPosition = item.start;
 
                 this.goTo(item.index, true);
             }
         } else {
             this._lastScrollDelta = delta;
-            this._currentPosition = Math.max(item.start, Math.min(position, item.end - this.winSize.height));
+            this._currentPosition = Math.max(item.start, Math.min(position, item.winHeightDiff));
             this._currentItem = item;
+
             this.moveTo({
                 to: this._currentPosition,
-                duration: 0
+                duration: opts.position ? 100 : 0
             });
         }
 
@@ -190,17 +174,12 @@ var debounce = require('./debounce'),
      */
     pager.addItems = function($items) {
         var _this = this,
-            id = _this.id,
-            $slide,
-            slideId;
+            $slide;
 
         $.each($items, function(ind, slide) {
             $slide = $(slide);
-            slideId = $slide.attr('id') || ('slide' + ind + 1);
-            $slide.attr('id', id + '_' + slideId);
 
             _this._itemsCount = _this._items.push({
-                id: slideId,
                 index: ind,
                 step: parseInt($slide.data('step'), 10) || 0,
                 steps: parseInt($slide.data('steps'), 10) || 0,
@@ -268,6 +247,8 @@ var debounce = require('./debounce'),
         }
 
         if ( ! isCurrent) {
+            // prevItem && prevItem.$elem.removeClass('current');
+
             _this._$elem.trigger('change_start', {
                 next: currentItem,
                 current: prevItem
@@ -278,11 +259,14 @@ var debounce = require('./debounce'),
             .moveTo({ to: currentItem.start })
             .then(function() {
                 if ( ! isCurrent) {
+                    // currentItem.$elem.addClass('current');
+
                     _this._currentItem = currentItem;
-                    _this._$elem.trigger('change_done', {
-                        prev: prevItem,
-                        current: currentItem
-                    });
+                    _this._$elem
+                        .trigger('change_done', {
+                            prev: prevItem,
+                            current: currentItem
+                        });
                 }
             });
 
@@ -326,7 +310,7 @@ var debounce = require('./debounce'),
      * @param {String} [direction] Направление
      * @returns {?Object} Айтем, соответствующий позиции
      */
-    pager._getItemByPosition = function(position, direction) {
+    pager._getItemByPosition = function(position, direction, withBounce) {
         var start = position || this._currentPosition,
             end = start + this.winSize.height,
             items = this._items,
@@ -339,15 +323,19 @@ var debounce = require('./debounce'),
             offset = start - item.start;
 
             if ( ! direction) {
-                if (item.height / 2 >= offset) {
+                if (item.halfHeight >= offset) {
                     break;
                 }
             } else {
-                if (direction === 'down' && item.start <= end && item.end >= end) {
+                if (
+                    direction === 'down' &&
+                    item[withBounce ? 'qStart' : 'start'] <= end &&
+                    item[withBounce ? 'qEnd' : 'end'] >= end
+                ) {
                     break;
                 }
 
-                if (direction === 'up' && item.end > start) {
+                if (direction === 'up' && item[withBounce ? 'qsEnd' : 'end'] > start) {
                     break;
                 }
             }
@@ -365,7 +353,9 @@ var debounce = require('./debounce'),
      * @param {Boolean} isOn
      */
     pager._bindEvents = function(isOn) {
-        this._$elem[isOn ? 'on' : 'off']('ontouchstart' in doc.documentElement ?
+        $('.pager__nav_dir_next')[isOn ? 'on' : 'off'](isTouch ? 'tap' : 'click', this.next.bind(this));
+
+        this._$elem[isOn ? 'on' : 'off'](isTouch ?
             {
                 touchend: this._onTouchEnd,
                 touchstart: this._onTouchStart
@@ -384,6 +374,10 @@ var debounce = require('./debounce'),
     pager._isRealScroll = function(newDelta) {
         var oldDelta = this._lastScrollDelta,
             isRealScroll = false;
+
+        if (navigator.userAgent.indexOf('Mac') === -1) {
+            return true;
+        }
 
         if (oldDelta !== null) {
             // different direction
@@ -435,19 +429,42 @@ var debounce = require('./debounce'),
      * @private
      * @param {jQuery.Event} event
      */
-    pager._onTouchStart = function(event) {  console.error('touch start');
-        this._touchStartY = event.originalEvent.touches[0].pageY;
+    pager._onTouchStart = function(event) {
+        var touches,
+            touch = true;
+
+        if (event.isDefaultPrevented()) {
+            touch = null;
+        }
+
+        touches = touch && event.originalEvent.targetTouches;
+
+        // игнорим если на экране слишком много пальцев
+        if (touches && touches.length > 1) {
+            touch = null;
+        }
+
+        this._touchStart = touch && (touches ? touches[0] : event.originalEvent);
     };
 
     /**
      * @private
      * @param {jQuery.Event} event
      */
-    pager._onTouchEnd = function(event) {   console.error('touch end');
-        this.move(this._touchStartY - event.originalEvent.changedTouches[0].pageY);
+    pager._onTouchEnd = function(event) {
+        if (this._touchStart === null) {
+            return;
+        }
+
+        var touches = event.originalEvent.changedTouches,
+            currentTouch = touches ? touches[0] : event.originalEvent;
+
+        this.move(this._touchStart.pageY - currentTouch.pageY, {
+            position: this._$elem.scrollTop()
+        });
 
         event.preventDefault();
-        event.stopPropafation();
+        event.stopPropagation();
 
         return false;
     };
@@ -455,8 +472,13 @@ var debounce = require('./debounce'),
     /**
      * @private
      */
-    pager._onScroll = function() {
-        this.move(this._$elem.scrollTop() - this._currentPosition);
+    pager._onScroll = function(event) {
+        this.scrolling || this.move(this._$elem.scrollTop() - this._currentPosition);
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        return false;
     };
 
     /**
@@ -466,10 +488,15 @@ var debounce = require('./debounce'),
         var winHeight = $win.height(),
             lastEnd = 0;
 
-        this._items.forEach(function(slide) {
-            slide.height = slide.$elem.height();
-            slide.start = lastEnd;
-            slide.end = (lastEnd += slide.height);
+        this._items.forEach(function(item) {
+            item.height = item.$elem.outerHeight();
+            item.halfHeight = item.height / 2;
+            item.start = lastEnd;
+            item.end = (lastEnd += item.height);
+            item.qStart = item.start + item.height / 10;
+            item.qEnd = item.end + item.height / 10;
+            item.qsEnd = item.end - item.height / 10;
+            item.winHeightDiff = item.end - winHeight;
         });
 
         this.winSize || (this.winSize = {});

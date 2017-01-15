@@ -7,19 +7,19 @@
         <meta name="description" content="Мосгорпасс">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
-        <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
-        <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-        <link rel="icon" type="image/png" href="assets/meta/favicon-128.png" sizes="128x128" />
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/images/meta/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="aassets/meta/pple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/meta/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/meta/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="assets/images/meta/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="assets/images/meta/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="assets/images/meta/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="assets/images/meta/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="assets/images/meta/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="assets/images/meta/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="assets/images/meta/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="assets/images/meta/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="assets/images/meta/favicon-128.png" sizes="128x128" />
         <meta name="application-name" content="&nbsp;"/>
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="assets/meta/mstile-144x144.png" />
@@ -59,7 +59,13 @@
                                 <img class="intro__nexus-pic" src="assets/images/intro_nexus.png">
                             </div>
                         </div>
-                        <div class="nav nav_dir_next"></div>
+                    </div>
+                    <div class="pager__nav pager__nav_dir_next">
+                        <span class="pager__nav-before"></span>
+                        <span class="pager__nav-arrow">
+                            <img src="assets/images/icons/arrow.svg">
+                        </span>
+                        <span class="pager__nav-after"></span>
                     </div>
                 </article>
 
@@ -68,21 +74,27 @@
                     <div class="pager__page-content">
                         <div class="features">
                             <div class="features__item">
-                                <img src="assets/images/features/economy.svg">
+                                <div class="features__item-icon">
+                                    <img src="assets/images/features/economy.svg">
+                                </div>
                                 <div class="features__item-info">
                                     <h3>Экономь время и&nbsp;деньги</h3>
                                     <p>Мосгорпасс предложит самый дешевый и&nbsp;быстрый маршрут, рассчитает примерное время в&nbsp;пути, пересадки на&nbsp;маршруте и&nbsp;стоимость поездки.</p>
                                 </div>
                             </div>
                             <div class="features__item">
-                                <img src="assets/images/features/traffic.svg">
+                                <div class="features__item-icon">
+                                    <img src="assets/images/features/traffic.svg">
+                                </div>
                                 <div class="features__item-info">
                                     <h3>Не стой в&nbsp;пробках</h3>
                                     <p>Используй общественный транспорт вместо личного автомобиля: наземный транспорт движется по выделенным полосам, а&nbsp;метро и&nbsp;вовсе по тоннелям!</p>
                                 </div>
                             </div>
                             <div class="features__item">
-                                <img src="assets/images/features/environment.svg">
+                                <div class="features__item-icon">
+                                    <img src="assets/images/features/environment.svg">
+                                </div>
                                 <div class="features__item-info">
                                     <h3>Город и&nbsp;люди вокруг</h3>
                                     <p>Интересные места Москвы отмечены на&nbsp;карте, а&nbsp;для того, чтобы познакомиться с&nbsp;попутчиком, достаточно просто подмигнуть ему в&nbsp;приложении!</p>
@@ -94,9 +106,10 @@
 
                 <!-- 3. SCREENS -->
                 <article class="pager__page pager__page_type_screens"
-                    data-steps="6">
+                    data-steps="5">
                     <div class="pager__page-content">
                         <div class="screens screens_step_0">
+                            <!-- Балуны -->
                             <div class="screens__balloons">
                                 <div class="screens__balloon screens__balloon_step_1">
                                     Поиск нужного места и&nbsp;выбор подходящего маршрута
@@ -114,7 +127,7 @@
                                     Новости транспорта
                                 </div>
 
-                                <!-- >= 1240px -->
+                                <!-- Линии для >= 1240px -->
                                 <svg class="screens__lines screens__lines_big"
                                      viewBox="0 0 978 472" xmlns="http://www.w3.org/2000/svg">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -167,7 +180,7 @@
                                     </g>
                                 </svg>
 
-                                <!-- >= 768px -->
+                                <!-- Линии для >= 768px -->
                                 <svg class="screens__lines screens__lines_small" viewBox="0 0 670 290" xmlns="http://www.w3.org/2000/svg">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="">
                                         <path class="fill-line__bg" stroke="#3092F9" stroke-width="2" transform="translate(325.000000, 34.500000) rotate(-180.000000) translate(-325.000000, -34.500000)" d="M337,6 L456.994725,6 C471.909327,6 484,18.7564238 484,34.5 C484,50.2401154 471.907548,63 456.994725,63 L166,63"></path>
@@ -194,9 +207,20 @@
                                 </svg>
 
                             </div>
+                            <!-- Телефон -->
                             <div class="screens__screen">
+                                <ul class="screens__bullets">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                                <div class="screens__nav screens__nav_dir_prev"></div>
+                                <div class="screens__nav screens__nav_dir_next"></div>
                                 <img class="screens__placeholder" src="assets/images/empty_iphone.png">
                                 <div class="screens__viewport">
+                                    <!-- Скрины -->
                                     <div class="screens__images">
                                         <img src="assets/images/screens/screen_1.jpg" width="249" height="427">
                                         <img src="assets/images/screens/screen_2.jpg" width="249" height="427">
@@ -259,13 +283,16 @@
                         </div>
                     </footer>
                 </article>
+
             </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write(
+            '<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
         <script src="js/vendor/jquery.vide-{{JQUERY_VIDE_VERSION}}.min.js"></script>
         <script src="js/vendor/jquery.easing-{{JQUERY_EASE_VERSION}}.min.js"></script>
+        <script src="js/vendor/jquery.tap-{{JQUERY_TAP_VERSION}}.js"></script>
         <script src="js/bundle.js"></script>
     </body>
 </html>

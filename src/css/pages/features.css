@@ -1,5 +1,5 @@
 .pager__page_type_features .pager__page-content {
-    max-width: 1080px;
+    max-width: 1134px;
 }
 
 .features {
@@ -32,6 +32,10 @@
     letter-spacing: 0.2px;
 
     font-family: 'PT Sans', sans-serif;
+}
+
+.features__item-icon {
+    text-align: center;
 }
 
 @media all and (max-width: 1239px) {
@@ -70,8 +74,12 @@
     .features__item-info {
         margin-left: 12px;
     }
+    .features__item-icon {
+        width: 110px;
+    }
     .features__item img {
-        width: 96px;
+        height: 90px;
+        width: auto;
     }
     .features__item h3 {
         font-size: 16px;

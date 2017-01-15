@@ -1,4 +1,6 @@
 archive
 node_modules
 
+dist
 .idea
+.publish

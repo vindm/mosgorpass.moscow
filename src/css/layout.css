@@ -10,6 +10,7 @@ html, body {
 
     font-family: FuturaNewDemi, 'PT Sans', sans-serif;
     background: #e42828;
+    overflow: hidden;
 }
 
 .pager {
@@ -21,12 +22,13 @@ html, body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
-.pager__page-content
-{
+.pager__page-content {
     padding: 20px;
     margin: auto;
+    box-sizing: border-box;
 }
 
 @media all and (max-width: 767px) {

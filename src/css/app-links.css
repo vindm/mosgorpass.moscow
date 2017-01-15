@@ -1,0 +1,19 @@
+.app-links img
+{
+    width: 194px;
+}
+.app-links img + img
+{
+    margin-left: 28px;
+}
+
+@media all and (max-width: 767px) {
+    .app-links img
+    {
+        width: 136px;
+    }
+    .app-links img + img
+    {
+        margin-left: 13px;
+    }
+}

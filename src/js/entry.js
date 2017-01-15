@@ -4,12 +4,18 @@ $(function() {
     var $pager = $('.pager'),
         $video = $('.pager__page').eq(0),
         $screens = $('.screens'),
-        $screensImages = $('.screens__images'),
         video = $video.data('vide').getVideoObject(),
         pager;
 
     $pager.pager();
     pager = $pager.data('pager');
+
+    $('.screens__nav_dir_next').on('tap', function() {
+        pager.step(1);
+    });
+    $('.screens__nav_dir_prev').on('tap', function() {
+        pager.step(-1);
+    });
 
     $pager
         .on('change_start', function() {
@@ -26,9 +32,6 @@ $(function() {
             $screens
                 .removeClass('screens_step_' + data.prev)
                 .addClass('screens_step_' + data.current);
-
-            $screensImages
-                .css('transform', 'translate3d(0, ' + data.current * -10 + '%, 0)');
 
             setTimeout(function() {
                 pager.enable();
