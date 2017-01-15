@@ -547,7 +547,7 @@ module.exports = function(fn, timeout, invokeAsap, ctx) {
      * @private
      */
     pager._onScroll = function(event) {
-        this.move(this._$elem.scrollTop() - this._currentPosition);
+        this.scrolling || this.move(this._$elem.scrollTop() - this._currentPosition);
 
         event.preventDefault();
         event.stopPropagation();
