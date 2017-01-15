@@ -11,11 +11,10 @@ $(function() {
     $pager.pager();
     pager = $pager.data('pager');
 
-    $('.screens__nav_dir_next').click(function() {
+    $('.screens__nav_dir_next').on('tap', function() {
         pager.step(1);
     });
-
-    $('.screens__nav_dir_prev').click(function() {
+    $('.screens__nav_dir_prev').on('tap', function() {
         pager.step(-1);
     });
 

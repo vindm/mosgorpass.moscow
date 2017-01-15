@@ -12,11 +12,10 @@ $(function() {
     $pager.pager();
     pager = $pager.data('pager');
 
-    $('.screens__nav_dir_next').click(function() {
+    $('.screens__nav_dir_next').on('tap', function() {
         pager.step(1);
     });
-
-    $('.screens__nav_dir_prev').click(function() {
+    $('.screens__nav_dir_prev').on('tap', function() {
         pager.step(-1);
     });
 
@@ -73,10 +72,12 @@ module.exports = function(fn, timeout, invokeAsap, ctx) {
 };
 
 },{}],3:[function(require,module,exports){
-var debounce = require('./debounce'),
-    scroll = require('./scroll');
-
 (function(doc, win, $, undefined) {
+    var debounce = require('./debounce'),
+        scroll = require('./scroll');
+
+    var isTouch = 'ontouchstart' in doc.documentElement;
+
     var $win = $(win);
 
     var Pager = function(elem) {
@@ -113,7 +114,6 @@ var debounce = require('./debounce'),
     pager.step = function(diff) {
         var currentItem = this._currentItem,
             steps = currentItem.steps,
-            isDown = delta > 0,
             nextStep,
             step;
 
@@ -121,7 +121,7 @@ var debounce = require('./debounce'),
             step = currentItem.step;
             nextStep = step + diff;
 
-            if (nextStep >= 0 && nextStep <= steps) {
+            if (nextStep >= 0 && nextStep <= (steps + (isTouch ? -1 : 0))) {
                 currentItem.step = nextStep;
 
                 this._$elem.trigger('change_step', {
@@ -132,7 +132,7 @@ var debounce = require('./debounce'),
                     isFirst: nextStep === 0
                 });
 
-                return nextStep;
+                return true;
             }
         }
     };
@@ -189,7 +189,7 @@ var debounce = require('./debounce'),
             }
         }
 
-        item = this._getItemByPosition(position, isDown ? 'down' : 'up');
+        item = this._getItemByPosition(position, isDown ? 'down' : 'up', Boolean(opts.position));
 
         if (item !== currentItem) {
             if (isRealScroll) {
@@ -400,9 +400,6 @@ var debounce = require('./debounce'),
                 if (item.halfHeight >= offset) {
                     break;
                 }
-                if (item.halfHeight >= offset) {
-                    break;
-                }
             } else {
                 if (
                     direction === 'down' &&
@@ -430,13 +427,9 @@ var debounce = require('./debounce'),
      * @param {Boolean} isOn
      */
     pager._bindEvents = function(isOn) {
-        $('.pager__nav_dir_next').on('click touchend touchstart tap', function(e) {
-            console.error(e);
+        $('.pager__nav_dir_next')[isOn ? 'on' : 'off'](isTouch ? 'tap' : 'click', this.next.bind(this));
 
-            e.preventDefault();
-        });
-
-        this._$elem[isOn ? 'on' : 'off']('ontouchstart' in doc.documentElement ?
+        this._$elem[isOn ? 'on' : 'off'](isTouch ?
             {
                 touchend: this._onTouchEnd,
                 touchstart: this._onTouchStart
@@ -568,11 +561,10 @@ var debounce = require('./debounce'),
         this._items.forEach(function(item) {
             item.height = item.$elem.outerHeight();
             item.halfHeight = item.height / 2;
-            item.quarterHeight = item.height / 4;
             item.start = lastEnd;
             item.end = (lastEnd += item.height);
-            item.qStart = item.start + item.quarterHeight;
-            item.qEnd = item.end + item.quarterHeight;
+            item.qStart = item.start + item.height / 10;
+            item.qEnd = item.end + item.height / 10;
             item.winHeightDiff = item.end - winHeight;
         });
 

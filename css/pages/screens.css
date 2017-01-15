@@ -52,25 +52,6 @@
     height: 10%;
 }
 
-.fill-line__bg {
-    stroke: #3092f9;
-}
-
-.fill-line__path {
-    stroke: #ECECEC;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-
-    transition: stroke-dashoffset 1.25s ease-out;
-}
-
-.fill-line__path_step_2,
-.fill-line__path_step_4,
-.fill-line__path_step_6 {
-    transform-origin: center;
-    transform: scaleY(-1);
-}
-
 .screens__balloons {
     position: absolute;
     width: 1168px;
@@ -98,18 +79,6 @@
     box-sizing: border-box;
 }
 
-.screens_step_0 .screens__balloon_step_1 ~ .screens__balloon,
-.screens_step_1 .screens__balloon_step_2 ~ .screens__balloon,
-.screens_step_2 .screens__balloon_step_3 ~ .screens__balloon,
-.screens_step_3 .screens__balloon_step_4 ~ .screens__balloon,
-.screens_step_4 .screens__balloon_step_5 ~ .screens__balloon,
-.screens_step_5 .screens__balloon_step_6 ~ .screens__balloon
-{
-    opacity: 0;
-    transition-delay: 0s;
-    transition-duration: .25s;
-}
-
 .screens_step_1 .screens__balloon_step_1,
 .screens_step_2 .screens__balloon_step_2,
 .screens_step_3 .screens__balloon_step_3,
@@ -118,6 +87,7 @@
 .screens_step_6 .screens__balloon_step_6
 {
     background: #e42828;
+    opacity: 1;
 }
 
 .screens__images {
@@ -142,6 +112,25 @@
         top: 60px;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    .fill-line__bg {
+        stroke: #3092f9;
+    }
+
+    .fill-line__path {
+        stroke: #ECECEC;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+
+        transition: stroke-dashoffset 1.25s ease-out;
+    }
+
+    .fill-line__path_step_2,
+    .fill-line__path_step_4,
+    .fill-line__path_step_6 {
+        transform-origin: center;
+        transform: scaleY(-1);
     }
 
     .screens__lines_big {
@@ -372,7 +361,23 @@
         width: 100%;
         padding: 15px;
         font-size: 12px;
+        opacity: 0;
     }
+    .screens__images img:first-child {
+        display: none;
+    }
+    .screens_step_0 .screens__balloon_step_1,
+    .screens_step_1 .screens__balloon_step_2,
+    .screens_step_2 .screens__balloon_step_3,
+    .screens_step_3 .screens__balloon_step_4,
+    .screens_step_4 .screens__balloon_step_5,
+    .screens_step_5 .screens__balloon_step_6
+    {
+        opacity: 1;
+        transition-duration: 0s;
+        background: #e42828;
+    }
+
     .screens__nav {
         display: block;
         position: absolute;
@@ -390,5 +395,9 @@
         right: 50%;
         background: url(../../assets/images/icons/prev.svg) no-repeat;
         background-position: 67% 50%;
+    }
+    .screens_step_0 .screens__nav_dir_prev,
+    .screens_step_4 .screens__nav_dir_next {
+        display: none;
     }
 }
