@@ -1,1 +1,36 @@
-<svg viewBox="0 0 3000 1049" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="rotate(-180 1500 136.5)"><path d="M1273 9L0 8.113M1708.406 174h139.664c24.262 0 43.93 20.813 43.93 46.5 0 25.681-19.671 46.5-43.93 46.5L0 264.659m3000-52.473l-1071-2.527M1707 175L0 171.908" stroke="#ECECEC" stroke-width="4"/><circle fill="#ECECEC" cx="1149" cy="264" r="9"/><circle fill="#ECECEC" cx="1929" cy="210" r="9"/><circle fill="#ECECEC" cx="1271" cy="9" r="9"/><circle fill="#ECECEC" cx="191" cy="9" r="9"/><circle fill="#ECECEC" cx="1349" cy="174" r="9"/></g><g transform="rotate(-180 735.5 478.75)"><path d="M183.608 101H43.934C19.67 101 0 80.187 0 54.5 0 28.819 19.673 8 43.934 8h724.613M1471 597.475l-919-1.816M79.194 101h455.219C569.53 101 598 133.898 598 174.5c0 40.593-28.473 73.5-63.587 73.5H22m1449 103.816L777 350" stroke="#ECECEC" stroke-width="4"/><circle fill="#ECECEC" cx="777" cy="9" r="9"/><circle fill="#ECECEC" cx="111" cy="102" r="9"/><circle fill="#ECECEC" cx="553" cy="596" r="9"/><circle fill="#ECECEC" cx="780" cy="351" r="9"/></g><g transform="rotate(-180 1500 483)"><path d="M0 7l1444 3.79M1153.795 104h158.899c21.978 0 39.796 20.59 39.796 46 0 25.405-17.82 46-39.796 46H890" stroke="#ECECEC" stroke-width="4"/><path d="M1153.795 104h158.899c21.978 0 39.796 20.59 39.796 46 0 25.405-17.82 46-39.796 46H0" stroke="#ECECEC" stroke-width="4"/><circle fill="#ECECEC" cx="1451" cy="9" r="9"/><circle fill="#ECECEC" cx="331" cy="9" r="9"/><circle fill="#ECECEC" cx="1152" cy="103" r="9"/><circle fill="#ECECEC" cx="646" cy="197" r="9"/></g></g></svg>
+<svg viewBox="0 0 3000 1049" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="content-copy" transform="translate(0.000000, 0.000000)">
+            <g id="Group-13" transform="translate(1500.000000, 136.500000) rotate(-180.000000) translate(-1500.000000, -136.500000) ">
+                <path d="M0,8.11328125 L1273,9" id="Rectangle-9" stroke="#ECECEC" stroke-width="4" transform="translate(636.500000, 8.556641) rotate(-180.000000) translate(-636.500000, -8.556641) "></path>
+                <path d="M1708.40647,174 L1848.06962,174 C1872.3317,174 1892,194.813113 1892,220.5 C1892,246.181241 1872.3288,267 1848.06962,267 L0,264.658659" id="Rectangle-9" stroke="#ECECEC" stroke-width="4"></path>
+                <path d="M3000,212.185547 L1929,209.658659" id="Rectangle-9-Copy" stroke="#ECECEC" stroke-width="4"></path>
+                <path d="M-2.27373675e-13,171.908203 L1707,175" id="Rectangle-9" stroke="#ECECEC" stroke-width="4" transform="translate(853.500000, 173.454102) rotate(-180.000000) translate(-853.500000, -173.454102) "></path>
+                <circle id="Oval-3" fill="#ECECEC" cx="1149" cy="264" r="9"></circle>
+                <circle id="Oval-3" fill="#ECECEC" cx="1929" cy="210" r="9"></circle>
+                <circle id="Oval-3" fill="#ECECEC" cx="1271" cy="9" r="9"></circle>
+                <circle id="Oval-3" fill="#ECECEC" cx="191" cy="9" r="9"></circle>
+                <circle id="Oval-3" fill="#ECECEC" cx="1349" cy="174" r="9"></circle>
+            </g>
+            <g id="Group-13-Copy" transform="translate(735.500000, 655.000000) rotate(-180.000000) translate(-735.500000, -655.000000) translate(0.000000, 352.500000)">
+                <path d="M584.939358,8 L724.613147,8 C748.877075,8 768.546875,28.8131125 768.546875,54.5 C768.546875,80.1812409 748.874181,101 724.613147,101 L4.206413e-12,101" id="Rectangle-9" stroke="#ECECEC" stroke-width="4" transform="translate(384.273438, 54.500000) rotate(-180.000000) translate(-384.273438, -54.500000) "></path>
+                <path d="M1471,597.474609 L552,595.658659" id="Rectangle-9" stroke="#ECECEC" stroke-width="4"></path>
+                <path d="M79.1941264,101 L534.41276,101 C569.531023,101 598,133.898146 598,174.5 C598,215.092929 569.526834,248 534.41276,248 L22,248" id="Rectangle-9" stroke="#ECECEC" stroke-width="4"></path>
+                <path d="M1471,351.81595 L777,350" id="Rectangle-9" stroke="#ECECEC" stroke-width="4"></path>
+                <circle id="Oval-3" fill="#ECECEC" cx="777" cy="9" r="9"></circle>
+                <circle id="Oval-3" fill="#ECECEC" cx="111" cy="102" r="9"></circle>
+                <circle id="Oval-3" fill="#ECECEC" cx="553" cy="596" r="9"></circle>
+                <circle id="Oval-3" fill="#ECECEC" cx="780" cy="351" r="9"></circle>
+            </g>
+            <g id="Group-13-Copy-2" transform="translate(2270.000000, 863.000000) rotate(-180.000000) translate(-2270.000000, -863.000000) translate(1540.000000, 760.000000)">
+                <path d="M1444,10.7904987 L0,7" id="Rectangle-9" stroke="#ECECEC" stroke-width="4" transform="translate(722.000000, 8.895249) rotate(-180.000000) translate(-722.000000, -8.895249) "></path>
+                <path d="M1153.79496,104 L1312.6937,104 C1334.67248,104 1352.4898,124.589316 1352.4898,150 C1352.4898,175.405098 1334.66986,196 1312.6937,196 L890,196" id="Rectangle-9" stroke="#ECECEC" stroke-width="4"></path>
+                <path d="M1153.79496,104 L1312.6937,104 C1334.67248,104 1352.4898,124.589316 1352.4898,150 C1352.4898,175.405098 1334.66986,196 1312.6937,196 L0,196" id="Rectangle-9" stroke="#ECECEC" stroke-width="4"></path>
+                <circle id="Oval-3" fill="#ECECEC" cx="1451" cy="9" r="9"></circle>
+                <circle id="Oval-3" fill="#ECECEC" cx="331" cy="9" r="9"></circle>
+                <circle id="Oval-3-Copy" fill="#ECECEC" cx="1152" cy="103" r="9"></circle>
+                <circle id="Oval-3-Copy" fill="#ECECEC" cx="646" cy="197" r="9"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

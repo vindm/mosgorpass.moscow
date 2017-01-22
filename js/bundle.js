@@ -5,7 +5,6 @@ $(function() {
     var $pager = $('.pager'),
         $video = $('.pager__page').eq(0),
         $screens = $('.screens'),
-        $screensImages = $('.screens__images'),
         video = $video.data('vide').getVideoObject(),
         pager;
 
@@ -34,9 +33,6 @@ $(function() {
             $screens
                 .removeClass('screens_step_' + data.prev)
                 .addClass('screens_step_' + data.current);
-
-            $screensImages
-                .css('transform', 'translate3d(0, ' + data.current * -10 + '%, 0)');
 
             setTimeout(function() {
                 pager.enable();

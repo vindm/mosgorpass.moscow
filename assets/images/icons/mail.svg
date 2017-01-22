@@ -1,1 +1,11 @@
-<svg viewBox="0 0 64 66" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path class="stroke" stroke="#FFF" d="M63 33c0 17.12-13.88 31-31 31C14.88 64 1 50.12 1 33 1 15.879 14.879 2 32 2c17.12 0 31 13.879 31 31"/><g class="fill" fill="#FFF"><path d="M27 32.5l-11 9v-18zm10 .1l11-9v18zM48 22L32 35 16 22z"/><path d="M48 43l-12-9-4 3-4-3-12 9z"/></g></g></svg>
+<svg viewBox="0 0 64 66" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path class="stroke" stroke="#FFFFFF" d="M63,32.9999181 C63,50.1205206 49.1203568,63.9998361 32.0000819,63.9998361 C14.8788239,63.9998361 1,50.1205206 1,32.9999181 C1,15.8788239 14.8788239,2 32.0000819,2 C49.1203568,2 63,15.8788239 63,32.9999181"></path>
+        <g class="fill" transform="translate(16.000000, 22.000000)" fill="#FFFFFF">
+            <polygon points="11 10.5005075 0 19.5 0 1.5"></polygon>
+            <polygon transform="translate(26.500000, 10.599609) rotate(-180.000000) translate(-26.500000, -10.599609) " points="32 10.6001169 21 19.5996094 21 1.59960938"></polygon>
+            <polygon points="32 0 16 13 0 0"></polygon>
+            <polygon points="32 21 20 12 16 15 12 12.0003071 0 21"></polygon>
+        </g>
+    </g>
+</svg>

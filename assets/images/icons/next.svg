@@ -1,1 +1,14 @@
-<svg width="15" height="26" viewBox="0 0 15 26" xmlns="http://www.w3.org/2000/svg"><title>left</title><path d="M11.223 13.152L1 2.418 2.358 1 14 13.152 2.552 25l-1.358-1.418z" fill="#E42828" fill-rule="evenodd"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="26px" viewBox="0 0 15 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>left</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mobile" transform="translate(-280.000000, -1198.000000)" fill="#E42828">
+            <g id="Group-8" transform="translate(280.000000, 1198.000000)">
+                <polygon id="Arrow" transform="translate(7.500000, 13.000000) scale(-1, 1) translate(-7.500000, -13.000000) " points="3.77664108 13.1518984 14 2.41772152 12.641791 1 1 13.1518987 12.4477612 25 13.8059701 23.5822785"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

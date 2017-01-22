@@ -74,21 +74,27 @@
                     <div class="pager__page-content">
                         <div class="features">
                             <div class="features__item">
-                                <img src="assets/images/features/economy.svg">
+                                <div class="features__item-icon">
+                                    <img src="assets/images/features/economy.svg">
+                                </div>
                                 <div class="features__item-info">
                                     <h3>Экономь время и&nbsp;деньги</h3>
                                     <p>Мосгорпасс предложит самый дешевый и&nbsp;быстрый маршрут, рассчитает примерное время в&nbsp;пути, пересадки на&nbsp;маршруте и&nbsp;стоимость поездки.</p>
                                 </div>
                             </div>
                             <div class="features__item">
-                                <img src="assets/images/features/traffic.svg">
+                                <div class="features__item-icon">
+                                    <img src="assets/images/features/traffic.svg">
+                                </div>
                                 <div class="features__item-info">
                                     <h3>Не стой в&nbsp;пробках</h3>
                                     <p>Используй общественный транспорт вместо личного автомобиля: наземный транспорт движется по выделенным полосам, а&nbsp;метро и&nbsp;вовсе по тоннелям!</p>
                                 </div>
                             </div>
                             <div class="features__item">
-                                <img src="assets/images/features/environment.svg">
+                                <div class="features__item-icon">
+                                    <img src="assets/images/features/environment.svg">
+                                </div>
                                 <div class="features__item-info">
                                     <h3>Город и&nbsp;люди вокруг</h3>
                                     <p>Интересные места Москвы отмечены на&nbsp;карте, а&nbsp;для того, чтобы познакомиться с&nbsp;попутчиком, достаточно просто подмигнуть ему в&nbsp;приложении!</p>
@@ -103,6 +109,7 @@
                     data-steps="5">
                     <div class="pager__page-content">
                         <div class="screens screens_step_0">
+                            <!-- Балуны -->
                             <div class="screens__balloons">
                                 <div class="screens__balloon screens__balloon_step_1">
                                     Поиск нужного места и&nbsp;выбор подходящего маршрута
@@ -120,7 +127,7 @@
                                     Новости транспорта
                                 </div>
 
-                                <!-- >= 1240px -->
+                                <!-- Линии для >= 1240px -->
                                 <svg class="screens__lines screens__lines_big"
                                      viewBox="0 0 978 472" xmlns="http://www.w3.org/2000/svg">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -173,7 +180,7 @@
                                     </g>
                                 </svg>
 
-                                <!-- >= 768px -->
+                                <!-- Линии для >= 768px -->
                                 <svg class="screens__lines screens__lines_small" viewBox="0 0 670 290" xmlns="http://www.w3.org/2000/svg">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="">
                                         <path class="fill-line__bg" stroke="#3092F9" stroke-width="2" transform="translate(325.000000, 34.500000) rotate(-180.000000) translate(-325.000000, -34.500000)" d="M337,6 L456.994725,6 C471.909327,6 484,18.7564238 484,34.5 C484,50.2401154 471.907548,63 456.994725,63 L166,63"></path>
@@ -200,11 +207,20 @@
                                 </svg>
 
                             </div>
+                            <!-- Телефон -->
                             <div class="screens__screen">
+                                <ul class="screens__bullets">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
                                 <div class="screens__nav screens__nav_dir_prev"></div>
                                 <div class="screens__nav screens__nav_dir_next"></div>
                                 <img class="screens__placeholder" src="assets/images/empty_iphone.png">
                                 <div class="screens__viewport">
+                                    <!-- Скрины -->
                                     <div class="screens__images">
                                         <img src="assets/images/screens/screen_1.jpg" width="249" height="427">
                                         <img src="assets/images/screens/screen_2.jpg" width="249" height="427">
